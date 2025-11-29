@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589245, b: 0.2978263, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1730,6 +1729,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5921948162512277794, guid: 08b69466ef28d274bbd7ac2820bc8f18, type: 3}
+      propertyPath: bgmVolume
+      value: 0.124
+      objectReference: {fileID: 0}
+    - target: {fileID: 5921948162512277794, guid: 08b69466ef28d274bbd7ac2820bc8f18, type: 3}
+      propertyPath: sfxClips.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5921948162512277794, guid: 08b69466ef28d274bbd7ac2820bc8f18, type: 3}
+      propertyPath: sfxClips.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 661daed714937e14ea48ae4d3e6fc5de, type: 3}
+    - target: {fileID: 5921948162512277794, guid: 08b69466ef28d274bbd7ac2820bc8f18, type: 3}
+      propertyPath: sfxClips.Array.data[0].name
+      value: Click
+      objectReference: {fileID: 0}
     - target: {fileID: 6875127973720166560, guid: 08b69466ef28d274bbd7ac2820bc8f18, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.1060019
@@ -3188,7 +3203,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1675938075}
   - component: {fileID: 1675938074}
-  - component: {fileID: 1675938073}
   - component: {fileID: 1675938072}
   m_Layer: 0
   m_Name: Camera
@@ -3231,14 +3245,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!81 &1675938073
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1675938071}
-  m_Enabled: 1
 --- !u!20 &1675938074
 Camera:
   m_ObjectHideFlags: 0
@@ -17950,6 +17956,7 @@ MonoBehaviour:
   runSpeed: 4
   smooth: 20
   gravity: -9.81
+  runStaminaPerSeceond: 20
   toggleCameraRotation: 0
   flashLights:
   - {fileID: 8750924733826280370}

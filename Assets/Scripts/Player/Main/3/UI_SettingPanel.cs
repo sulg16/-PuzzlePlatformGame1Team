@@ -30,12 +30,14 @@ public class UI_SettingPanel : MonoBehaviour
         Time.timeScale = 0.1f;
         DirectionManager.Instance.LockOnCam(true);
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
     public void CloseUI()
     {
         Time.timeScale = 1f;
         DirectionManager.Instance.LockOnCam(false);
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void OnToggleSettings()

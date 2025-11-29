@@ -23,6 +23,18 @@ public enum PlayerState //�÷��̾��� �������
 
 public class UI_Manager : MonoBehaviour //�����Ͷ� ���� ������
 {
+    public GameObject toReturnbt;
+
+    public void OnToReturnBtOPEN()
+    {
+        toReturnbt.gameObject.SetActive(true);
+    }
+
+    public void OnToReturnBtClose()
+    {
+        toReturnbt.gameObject.SetActive(false);
+    }
+
     private static UI_Manager _instance;
     public static UI_Manager Instance
     {
@@ -107,7 +119,7 @@ public class UI_Manager : MonoBehaviour //�����Ͷ� ���� ��
         _save.SetActive(false);
         _equipment.SetActive(true);
         _conditions.SetActive(true);
-        //_start.SetActive(true);
+        _start.SetActive(true);
         _pauseButton.SetActive(true);
 
         _settingPanel.InitPanel();

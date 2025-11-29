@@ -13,24 +13,7 @@ public class NamedSFX
 }
 public class AudioManager : MonoBehaviour
 {
-    private static AudioManager _instance;
-    public static AudioManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = FindObjectOfType<AudioManager>();
-
-                if (_instance == null)
-                {
-                    GameObject go = new GameObject("AudioManager");
-                    _instance = go.AddComponent<AudioManager>();
-                }
-            }
-            return _instance;
-        }
-    }
+    public static AudioManager Instance { get; private set; }
 
     [Header("BGM Clips")]
     public AudioClip bgmStart;
@@ -53,13 +36,13 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        if (_instance != null && _instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject); // 이미 다른 AudioManager 있으면 파괴
             return;
         }
 
-        _instance = this; // 여기서 등록
+        Instance = this; // 여기서 등록
         DontDestroyOnLoad(gameObject);
 
         // BGM 오디오 소스 생성

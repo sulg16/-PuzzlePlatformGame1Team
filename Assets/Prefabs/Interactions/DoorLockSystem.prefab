@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8821070815884526559}
   - component: {fileID: 1467492304382159792}
   - component: {fileID: 7385081316160463231}
-  - component: {fileID: 4511080171680840034}
   - component: {fileID: 4546607823510190849}
   - component: {fileID: 8288680826089426381}
   m_Layer: 8
@@ -65,19 +64,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5, y: 1, z: 1}
   m_Center: {x: -6, y: 0, z: 0}
---- !u!114 &4511080171680840034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3691858575056067694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13833dcd5c1f2c44baa744c2497c36e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  promptText: {fileID: 0}
 --- !u!114 &4546607823510190849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,7 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallCollider: {fileID: 6975153599934976542}
-  keyName: 
+  keyName: "\uC5F4\uB78C\uC2E4 \uC5F4\uC1E0"
 --- !u!82 &8288680826089426381
 AudioSource:
   m_ObjectHideFlags: 0
@@ -255,4 +241,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fa1b3288b31d94b8f82cce668e4658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
+  data: {fileID: 11400000, guid: 71042be1a577b174d8527d2ca25b372b, type: 2}

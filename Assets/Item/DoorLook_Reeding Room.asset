@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44890fc41bf81a147983a8417da06ddb, type: 3}
+  m_Name: DoorLook_Reeding Room
+  m_EditorClassIdentifier: 
+  id: ed4695dbfb3c4300acde40663efd9d22
+  displayName: "\uC5F4\uB78C\uC2E4"
+  description: "\uC7A0\uACA8\uC788\uB2E4."
+  type: 0
+  icon: {fileID: 0}
+  itemPrefab: {fileID: 0}
+  stackable: 1
+  maxStack: 99
+  getable: 0

@@ -15,8 +15,9 @@ MonoBehaviour:
   id: 22ffa68946ad417c87004b3fd039b0b0
   displayName: "\uD53C\uC790"
   description: "\uCC28\uAC00\uC6B4 \uD53C\uC790"
-  type: 0
+  type: 2
   icon: {fileID: 0}
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 1217786183948592921, guid: fc74d809c2f13394784e2d57e184babc, type: 3}
   stackable: 0
   maxStack: 99
+  getable: 1

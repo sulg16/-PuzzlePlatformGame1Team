@@ -47,18 +47,18 @@ public class UI_SettingPanel : MonoBehaviour
             OpenUI();
             gameObject.SetActive(true);
 
-            // 리스너 해제 (안 해도 되지만 깔끔하게 하려면 유지)
+            bgmSlider.SetValueWithoutNotify(AudioManager.Instance.bgmVolume);
+            sfxSlider.SetValueWithoutNotify(AudioManager.Instance.sfxVolume);
+
             bgmSlider.onValueChanged.RemoveListener(OnBgmSlider);
             sfxSlider.onValueChanged.RemoveListener(OnSfxSlider);
         }
+
         else
         {
             CloseUI();
             gameObject.SetActive(false);
 
-            // 슬라이더 값 세팅
-            bgmSlider.value = AudioManager.Instance.bgmVolume;
-            sfxSlider.value = AudioManager.Instance.sfxVolume;
             // 리스너 등록, 실시간반영용
             bgmSlider.onValueChanged.AddListener(OnBgmSlider);
             sfxSlider.onValueChanged.AddListener(OnSfxSlider);

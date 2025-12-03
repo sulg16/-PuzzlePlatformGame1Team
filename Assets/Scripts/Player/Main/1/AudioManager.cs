@@ -31,56 +31,71 @@ public class AudioManager : MonoBehaviour
     private List<AudioSource> sfxSources = new List<AudioSource>();
     private int currentSfxIndex = 0;
 
-    [Range(0f, 1f)] public float bgmVolume = 0.25f;
-    [Range(0f, 1f)] public float sfxVolume = 1f;
+    [Range(0f, 1f)] public float bgmVolume = 0.015f;
+    [Range(0f, 1f)] public float sfxVolume = 0.04f;
 
     void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject); // 이미 다른 AudioManager 있으면 파괴
-            return;
-        }
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
 
-        Instance = this; // 여기서 등록
-        DontDestroyOnLoad(gameObject);
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
 
-        // BGM 오디오 소스 생성
-        bgmSource = gameObject.AddComponent<AudioSource>();
-        bgmSource.loop = true;
-        bgmSource.playOnAwake = false;
+            bgmVolume = PlayerPrefs.GetFloat("BgmVolume", bgmVolume);
+            sfxVolume = PlayerPrefs.GetFloat("SfxVolume", sfxVolume);
 
-        // SFX 풀 초기화
-        for (int i = 0; i < sfxPoolSize; i++)
-        {
-            AudioSource sfx = gameObject.AddComponent<AudioSource>();
-            sfx.playOnAwake = false;
-            sfxSources.Add(sfx);
-        }
+            bgmSource = gameObject.AddComponent<AudioSource>();
+            bgmSource.loop = true;
+            bgmSource.playOnAwake = false;
+            bgmSource.volume = bgmVolume;
 
-        // 사운드 이름-클립 매핑
-        foreach (var sfx in sfxClips)
-        {
-            if (!sfxDict.ContainsKey(sfx.name))
-                sfxDict.Add(sfx.name, sfx.clip);
-            else
-                Debug.LogWarning($"[AudioManager] 중복된 SFX 이름: {sfx.name}");
-        }
+            for (int i = 0; i < sfxPoolSize; i++)
+            {
+                AudioSource sfx = gameObject.AddComponent<AudioSource>();
+                sfx.playOnAwake = false;
+                sfx.volume = sfxVolume;
+                sfxSources.Add(sfx);
+            }
 
-        // 첫 BGM 실행
-        if (bgmStart != null)
-            PlayBGM(bgmStart);
+            foreach (var sfx in sfxClips)
+            {
+                if (!sfxDict.ContainsKey(sfx.name))
+                    sfxDict.Add(sfx.name, sfx.clip);
+                else
+                    Debug.LogWarning($"[AudioManager] 중복된 SFX 이름: {sfx.name}");
+            }
+
+            if (bgmStart != null)
+                PlayBGM(bgmStart);
     }
+
+    public void SetBgmVolume(float volume)
+    {
+        bgmVolume = Mathf.Clamp01(volume);
+        bgmSource.volume = bgmVolume;
+
+        PlayerPrefs.SetFloat("BgmVolume", bgmVolume);
+        PlayerPrefs.Save();
+    }
+    public void SetSfxVolume(float volume)
+    {
+        sfxVolume = Mathf.Clamp01(volume);
+        foreach (var s in sfxSources)
+        {
+            s.volume = sfxVolume;
+        }
+        PlayerPrefs.SetFloat("SfxVolume", sfxVolume);
+        PlayerPrefs.Save();
+    }
+
 
     void Update()
     {
-        // 항상 볼륨 최신화 (옵션에서 슬라이더로 조절 시 반영되게)
-        bgmSource.volume = bgmVolume;
-        foreach (var sfx in sfxSources)
-        {
-            sfx.volume = sfxVolume;
-        }
-        //전역 버튼소리 활성화
+      
         if (Input.GetMouseButtonDown(0))
         {
             GameObject clicked = EventSystem.current.currentSelectedGameObject;
@@ -136,18 +151,6 @@ public class AudioManager : MonoBehaviour
     public void PlayClickSFX()
     {
         PlaySFX("Click"); // 또는 클릭 사운드 이름에 맞게 수정
-    }
-
-
-    // 외부에서 조절용
-    public void SetBgmVolume(float volume)
-    {
-        bgmVolume = Mathf.Clamp01(volume);
-    }
-
-    public void SetSfxVolume(float volume)
-    {
-        sfxVolume = Mathf.Clamp01(volume);
     }
 
     IEnumerator NextBGM(AudioClip newClip, float duration)

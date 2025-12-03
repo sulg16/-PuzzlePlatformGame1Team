@@ -81,16 +81,13 @@ public class UI_Manager : MonoBehaviour //�����Ͷ� ���� ��
     public GameObject _equipment;
 
 
-
-    ItemData _data => ScriptableObject.CreateInstance<ItemData>();
-
     void Awake()
     {
         Debug.Log("UI_Manager Awake in scene: " + gameObject.scene.name);
         if (_instance != null && _instance != this)
         {
             Debug.Log("Duplicate UIManager found, destroying this one: " + gameObject.name);
-            transform.SetParent(null); // �θ�(Canvas)���� �и�
+            transform.SetParent(null);
             Destroy(gameObject);
             return;
         }
@@ -109,11 +106,9 @@ public class UI_Manager : MonoBehaviour //�����Ͷ� ���� ��
     {
         _crosshair.SetActive(false);
         _promptText.SetActive(false);
-        _damageIndigator.SetActive(false);
         _uiaction.gameObject.SetActive(false);
         _settingPanel.gameObject.SetActive(false);
         _inventory.gameObject.SetActive(false);
-        _quickslot.SetActive(false);
         _pausePanel.SetActive(false);
         _gameOver.SetActive(false);
         _save.SetActive(false);
@@ -124,9 +119,9 @@ public class UI_Manager : MonoBehaviour //�����Ͷ� ���� ��
 
         _settingPanel.InitPanel();
 
-        _inventory.gameObject.SetActive(true);       // �ϴ� Ȱ��ȭ
-        _inventory.Init(_viewModel2);               // ���� ���� + ���ε�
-        _inventory.gameObject.SetActive(false);     // �ٽ� ����
+        _inventory.gameObject.SetActive(true);
+        _inventory.Init(_viewModel2);
+        _inventory.gameObject.SetActive(false);
 
         _view.Init(_viewModel);
         BindDeathOnce();
@@ -134,21 +129,20 @@ public class UI_Manager : MonoBehaviour //�����Ͷ� ���� ��
 
     void BindDeathOnce()
     {
-        // HP�� 0 ���ϰ� �Ǵ� 'ù ����'���� �ߵ�
         _viewModel.Health
             .Where(h => h <= 0)
             .Take(1)
             .Subscribe(_ =>
             {
-                _gameOver.SetActive(true);        // �г� ǥ��
-                Time.timeScale = 0f;              // �Ͻ�����
+                _gameOver.SetActive(true);        
+                Time.timeScale = 0f;              
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
 
-                // (����) �Է� ����
+               
                 var pc = FindObjectOfType<PlayerController>(true);
                 if (pc != null) pc.LockOnInput(1);
             })
-            .AddTo(this); // UI_Manager�� MonoBehaviour��� OK
+            .AddTo(this); 
     }
 }

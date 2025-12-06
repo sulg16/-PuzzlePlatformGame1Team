@@ -62,18 +62,18 @@ public class InventoryView : MonoBehaviour
         {
             nameText.text = "";
             descriptionText.text = "";
-            useButton.SetActive(false);
-            equipButton.SetActive(false);
-            unequipButton.SetActive(false);
-            dropButton.SetActive(false);
-            slots[index].SetImageActive(false); // 빈 슬롯 이미지 숨기기
+            slots[index].SetImageActive(false);
             return;
         }
 
         var item = slot.Item.Value;
 
-        nameText.text = item.displayName;
-        descriptionText.text = $"Quantity: {slot.Quantity.Value}";
+        nameText.text = item.GetDisplayName(); 
+
+        string quantityLabel =
+            Localization.CurrentLanguage == Language.Korean ? "수량" : "Quantity";
+
+        descriptionText.text = $"{quantityLabel}: {slot.Quantity.Value}";
 
         useButton.SetActive(item.type == ItemType.Consumable);
         equipButton.SetActive(!slot.Equipped.Value);
@@ -82,8 +82,7 @@ public class InventoryView : MonoBehaviour
 
         slots[index].SetImageActive(true);
 
-        // 아이콘 표시
-        var icon = slots[index].icon; // ItemSlot에 Image 컴포넌트가 있다고 가정
+        var icon = slots[index].icon;
         if (icon != null)
             icon.sprite = item.icon;
     }
@@ -123,4 +122,35 @@ public class InventoryView : MonoBehaviour
     }
 
     private void OnDestroy() => disposables.Dispose();
+
+    public void RefreshCurrent()
+    {
+        if (selectedIndex.Value.HasValue)
+        {
+            int index = selectedIndex.Value.Value;
+            UpdateSelectedUI(index);
+            UpdateOutlineUI(index);
+        }
+    }
+
+    private void OnEnable()
+    {
+        Localization.OnLanguageChanged += HandleLanguageChanged;
+    }
+
+    private void OnDisable()
+    {
+        Localization.OnLanguageChanged -= HandleLanguageChanged;
+    }
+
+    private void HandleLanguageChanged()
+    {
+        if (selectedIndex.Value.HasValue)
+        {
+            int index = selectedIndex.Value.Value;
+            UpdateSelectedUI(index);
+            UpdateOutlineUI(index);
+        }
+
+    }
 }

@@ -10,7 +10,7 @@ public class ItemObject : MonoBehaviour
         if (data != null)
         {
             // C# 6.0 이상에서 사용 가능한 문자열 보간법 (Interpolated String)
-            return $"{data.displayName}\n{data.description}";
+            return $"{data.GetDisplayName()}\n{data.GetDescription()}";
         }
 
         // data가 null일 경우, 빈 문자열을 반환하여 오류를 방지

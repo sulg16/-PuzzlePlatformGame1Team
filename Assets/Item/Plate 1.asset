@@ -16,6 +16,8 @@ MonoBehaviour:
   displayName: "\uCE90\uBE44\uB2DB"
   description: "\uCE90\uBE44\uB2DB\uC5D0 \uC811\uC2DC\uB97C \uB193\uC744 \uACF5\uAC04\uC774
     \uC788\uB2E4."
+  displayNameEn: cabinet
+  descriptionEn: There is room for dishes in the cabinet.
   type: 0
   icon: {fileID: 0}
   itemPrefab: {fileID: 0}

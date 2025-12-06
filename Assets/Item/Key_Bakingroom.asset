@@ -15,6 +15,8 @@ MonoBehaviour:
   id: 993dc2f6ad8a4211bac175530915b045
   displayName: "\uC870\uB9AC\uC2E4\uC2B5\uC2E4 \uC5F4\uC1E0"
   description: "\uC870\uB9AC\uC2E4\uC2B5\uC2E4\uC744 \uC5F4\uC218 \uC788\uB2E4."
+  displayNameEn: cooking room key
+  descriptionEn: You can open a cooking room.
   type: 3
   icon: {fileID: 21300000, guid: 620d0be44448e7446b3d0ea9c1c82442, type: 3}
   itemPrefab: {fileID: 6229766896506313677, guid: f49faffb7bc8f994ebaa40d4ca3ea086, type: 3}

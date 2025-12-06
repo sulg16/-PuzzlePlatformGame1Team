@@ -16,6 +16,8 @@ MonoBehaviour:
   displayName: "\uD559\uAD50 \uD604\uAD00"
   description: "\uBC16\uC73C\uB85C \uD1B5\uD558\uB294 \uD604\uAD00\uBB38\uC774\uB2E4.
     \uC9C0\uAE08\uC740 \uC7A0\uACA8\uC788\uB2E4"
+  displayNameEn: the front door of a school
+  descriptionEn: It's a front door that leads outside. It's locked now
   type: 0
   icon: {fileID: 0}
   itemPrefab: {fileID: 0}

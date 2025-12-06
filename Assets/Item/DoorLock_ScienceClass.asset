@@ -15,6 +15,8 @@ MonoBehaviour:
   id: 1e7ac42a4d7c464ab319071b7a2f60d7
   displayName: "\uACFC\uD559\uC2E4"
   description: "\uBB38\uC774 \uC7A0\uACA8\uC788\uB2E4"
+  displayNameEn: a science room
+  descriptionEn: It's locked.
   type: 0
   icon: {fileID: 0}
   itemPrefab: {fileID: 0}

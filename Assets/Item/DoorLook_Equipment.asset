@@ -15,6 +15,8 @@ MonoBehaviour:
   id: ed4695dbfb3c4300acde40663efd9d22
   displayName: "\uBE44\uD488\uC2E4"
   description: "\uC7A0\uACA8\uC788\uB2E4."
+  displayNameEn: supply room
+  descriptionEn: It's locked.
   type: 0
   icon: {fileID: 0}
   itemPrefab: {fileID: 0}

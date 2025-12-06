@@ -15,6 +15,8 @@ MonoBehaviour:
   id: 2abc11cdcfaf484babbbb3da115d94fc
   displayName: "\uC811\uC2DC"
   description: "\uC74C\uC2DD\uC744 \uB2F4\uC744 \uC218 \uC788\uB2E4."
+  displayNameEn: Plate
+  descriptionEn: be able to hold food
   type: 0
   icon: {fileID: 0}
   itemPrefab: {fileID: 0}

@@ -8,6 +8,8 @@ public abstract class ItemData : ScriptableObject
     [SerializeField, HideInInspector] public string id;                 // for save
     public string displayName;
     public string description;
+    public string displayNameEn;
+    public string descriptionEn;
     public ItemType type = ItemType.Simple;
     public Sprite icon;
     public GameObject itemPrefab;
@@ -21,10 +23,33 @@ public abstract class ItemData : ScriptableObject
         id = System.Guid.NewGuid().ToString("N");
     }
 
-    // If value is empty, automatically generate ID
     protected virtual void OnValidate()
     {
         if (string.IsNullOrEmpty(id))
             GenerateId();
+    }
+
+    public string GetDisplayName()
+    {
+        switch (Localization.CurrentLanguage)
+        {
+            case Language.English:
+                return string.IsNullOrEmpty(displayNameEn) ? displayName : displayNameEn;
+            case Language.Korean:
+            default:
+                return displayName;
+        }
+    }
+
+    public string GetDescription()
+    {
+        switch (Localization.CurrentLanguage)
+        {
+            case Language.English:
+                return string.IsNullOrEmpty(descriptionEn) ? description : descriptionEn;
+            case Language.Korean:
+            default:
+                return description;
+        }
     }
 }

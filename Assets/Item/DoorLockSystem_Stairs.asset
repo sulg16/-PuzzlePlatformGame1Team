@@ -15,6 +15,8 @@ MonoBehaviour:
   id: cb12eadea4274e9a9f30f9887eaaa1c3
   displayName: "\uACC4\uB2E8\uC2E4"
   description: "\uBB38\uC774 \uC7A0\uACA8\uC788\uB2E4"
+  displayNameEn: a door blocking the stairs
+  descriptionEn: It's locked.
   type: 0
   icon: {fileID: 0}
   itemPrefab: {fileID: 0}

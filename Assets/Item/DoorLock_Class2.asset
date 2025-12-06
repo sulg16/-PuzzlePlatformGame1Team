@@ -15,6 +15,8 @@ MonoBehaviour:
   id: c53a77bca1aa4af7b574d3f3f4314e64
   displayName: "2\uBC18 \uAD50\uC2E4"
   description: "\uC5F4\uC1E0\uAD6C\uBA4D\uC774 \uC774\uBB3C\uC9C8\uB85C \uB9C9\uD600\uC788\uB2E4"
+  displayNameEn: second class
+  descriptionEn: The keyhole is clogged with foreign substances
   type: 0
   icon: {fileID: 0}
   itemPrefab: {fileID: 0}

@@ -16,8 +16,11 @@ MonoBehaviour:
   displayName: "\uBE44\uD488\uCC3D\uACE0 \uC5F4\uC1E0"
   description: "\uC870\uB9AC\uC2E4\uC2B5\uC2E4 \uC596\uC758 \uBE44\uD488\uCC3D\uACE0\uB97C
     \uC5F4\uC218 \uC788\uB2E4."
+  displayNameEn: supply storage key
+  descriptionEn: You can open a supply warehouse for cooking lab yard.
   type: 0
   icon: {fileID: 21300000, guid: 620d0be44448e7446b3d0ea9c1c82442, type: 3}
   itemPrefab: {fileID: 212374289700637233, guid: 856646b9fc60caf46a3c3028e040e452, type: 3}
   stackable: 0
   maxStack: 0
+  getable: 1

@@ -16,6 +16,8 @@ MonoBehaviour:
   displayName: "\uCABD\uC9C0"
   description: "\uC65C \uC790\uAFB8 \uB3C4\uC11C\uAD00 \uBE44\uBC88 \uAE4C\uBA39\uC5B4?
     1974 !! "
+  displayNameEn: chat
+  descriptionEn: 1974
   type: 0
   icon: {fileID: 0}
   itemPrefab: {fileID: 0}

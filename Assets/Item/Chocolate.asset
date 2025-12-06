@@ -16,9 +16,13 @@ MonoBehaviour:
   displayName: "\uBC1C\uB80C\uD0C0\uC778 \uCD08\uCF5C\uB9BF"
   description: "\uC815\uC131\uC2A4\uB808 \uC900\uBE44\uD55C \uCD08\uCF5C\uB9BF\uC774\uB2E4.
     \uBA39\uC73C\uBA74 \uCCB4\uB825\uC774 \uAC00\uB4DD \uCC2C\uB2E4."
+  displayNameEn: Chocolate
+  descriptionEn: It's chocolate prepared with great care. If you eat it, you'll feel
+    full of energy.
   type: 1
   icon: {fileID: 21300000, guid: ba1faa34b226a5c428f3381c6dec4c02, type: 3}
   itemPrefab: {fileID: 904045273312814628, guid: 8a79d211470578a47944bb054834936a, type: 3}
   stackable: 0
   maxStack: 0
+  getable: 1
   healAmount: 1000

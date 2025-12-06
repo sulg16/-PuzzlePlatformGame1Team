@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: ed4695dbfb3c4300acde40663efd9d22
   displayName: "\uC5F4\uB78C\uC2E4"
-  description: "\uC7A0\uACA8\uC788\uB2E4."
+  description: "\uC7A0\uACA8\uC788\uB2E4. \uC5F4\uC1E0\uB97C \uBD84\uC2E4\uD588\uB2E4\uACE0
+    \uD55C\uB2E4."
+  displayNameEn: reading room
+  descriptionEn: It's locked. It's said to have lost the key.
   type: 0
   icon: {fileID: 0}
   itemPrefab: {fileID: 0}

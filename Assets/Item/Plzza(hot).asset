@@ -15,6 +15,8 @@ MonoBehaviour:
   id: 22ffa68946ad417c87004b3fd039b0b0
   displayName: "\uD53C\uC790"
   description: "\uB530\uB048\uB530\uB048\uD55C \uB370\uC6B4 \uD53C\uC790"
+  displayNameEn: Pizza
+  descriptionEn: Hot pizza
   type: 0
   icon: {fileID: 0}
   itemPrefab: {fileID: 1217786183948592921, guid: e1363a1bba8083642a7beb8622ffb352, type: 3}

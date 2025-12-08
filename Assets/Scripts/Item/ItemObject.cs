@@ -6,14 +6,10 @@ public class ItemObject : MonoBehaviour
 
     public string GetInteractPrompt()
     {
-        // data가 null이 아닐 때만 유효한 문자열을 반환
         if (data != null)
         {
-            // C# 6.0 이상에서 사용 가능한 문자열 보간법 (Interpolated String)
             return $"{data.GetDisplayName()}\n{data.GetDescription()}";
         }
-
-        // data가 null일 경우, 빈 문자열을 반환하여 오류를 방지
         return "";
     }
 
@@ -26,12 +22,10 @@ public class ItemObject : MonoBehaviour
         return true;
     }
 
-    // 매개변수로 현재 상호작용 중인 게임 오브젝트를 받음
     public void OnInteract(GameObject interactor)
     {
         if (data == null) return;
 
-        // 인벤토리 ViewModel 가져오기
         var viewModel2 = UI_Manager.Instance._viewModel2;
         if (viewModel2 != null)
         {

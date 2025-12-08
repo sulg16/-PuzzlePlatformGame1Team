@@ -68,7 +68,6 @@ public class UI_Manager : MonoBehaviour //ï¿½ï¿½ï¿½ï¿½ï¿½Í¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï
     public UI_SettingPanel _settingPanel;
     public GameObject _pausePanel;
     public GameObject _gameOver;
-    public GameObject _save;
     public GameObject _start;
     [Header("GUI")]
     public GameObject _damageIndigator;
@@ -76,9 +75,6 @@ public class UI_Manager : MonoBehaviour //ï¿½ï¿½ï¿½ï¿½ï¿½Í¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï
     public UI_ActionKey _uiaction;
     public GameObject _crosshair;
     public GameObject _conditions;
-    public GameObject _quickslot;
-    public GameObject _pauseButton;
-    public GameObject _equipment;
 
 
     void Awake()
@@ -111,11 +107,8 @@ public class UI_Manager : MonoBehaviour //ï¿½ï¿½ï¿½ï¿½ï¿½Í¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï
         _inventory.gameObject.SetActive(false);
         _pausePanel.SetActive(false);
         _gameOver.SetActive(false);
-        _save.SetActive(false);
-        _equipment.SetActive(true);
         _conditions.SetActive(true);
         _start.SetActive(true);
-        _pauseButton.SetActive(true);
 
         _settingPanel.InitPanel();
 

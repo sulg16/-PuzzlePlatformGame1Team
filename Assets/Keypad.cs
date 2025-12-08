@@ -39,7 +39,6 @@ public class Keypad : MonoBehaviour
             bool ok = string.Equals(userInput, password, System.StringComparison.Ordinal);
             if (ok)
             {
-                Debug.Log("Entry Allowed");
                 if (audioSource && openSound) audioSource.PlayOneShot(openSound);
                 onCorrect?.Invoke();
                 ClearPassword();
@@ -47,7 +46,6 @@ public class Keypad : MonoBehaviour
             }
             else
             {
-                Debug.Log("Not this time");
                 if (audioSource && noSound) audioSource.PlayOneShot(noSound);
                 onIncorrect?.Invoke();
             }

@@ -11,10 +11,6 @@ public class InventoryView : MonoBehaviour
     public GameObject slotPrefab;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI descriptionText;
-    public GameObject useButton;
-    public GameObject equipButton;
-    public GameObject unequipButton;
-    public GameObject dropButton;
     public Text promptText;
 
     private InventoryViewModel viewModel;
@@ -74,11 +70,6 @@ public class InventoryView : MonoBehaviour
             Localization.CurrentLanguage == Language.Korean ? "¼ö·®" : "Quantity";
 
         descriptionText.text = $"{quantityLabel}: {slot.Quantity.Value}";
-
-        useButton.SetActive(item.type == ItemType.Consumable);
-        equipButton.SetActive(!slot.Equipped.Value);
-        unequipButton.SetActive(slot.Equipped.Value);
-        dropButton.SetActive(true);
 
         slots[index].SetImageActive(true);
 

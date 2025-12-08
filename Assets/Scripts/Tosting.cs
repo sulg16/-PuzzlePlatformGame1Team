@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Tosting : MonoBehaviour
 {
-    [Header("Refer to an object that exists in the scene")]
     public GameObject itemA;
     public GameObject itemB;
     public float showSeconds = 3f;
@@ -13,8 +12,6 @@ public class Tosting : MonoBehaviour
 
     bool busy = false;
     bool done = false;
-
-    // E키/유니티 이벤트/키패드에서 이 메서드 호출
 
     private void Update()
     {
@@ -65,13 +62,10 @@ public class Tosting : MonoBehaviour
         {
             itemA.SetActive(false);
         }
-
-
         if (itemB)
         {
             itemB.SetActive(true);
         } 
-
 
         done = true;
         busy = false;

@@ -20,7 +20,7 @@ public class UI_SettingPanel : MonoBehaviour
     public void InitPanel()
     {
         start = UI_Manager.Instance._start;
-        save = UI_Manager.Instance._save;
+        //save = UI_Manager.Instance._save;
         _controller = SafeFetchHelper.GetChildOrError<PlayerController>(Player.Instance.gameObject);
         _inventory = SafeFetchHelper.GetChildOrError<InventoryView>(UI_Manager.Instance.gameObject);
     }

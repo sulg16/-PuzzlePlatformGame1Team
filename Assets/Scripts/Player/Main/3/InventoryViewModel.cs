@@ -22,10 +22,12 @@ LabelText = Observable.CombineLatest(
     Slot.Item, Slot.Quantity, Slot.Equipped,
     (item, qty, eq) =>
     {
-        if (item == null) return "";   // 빈 슬롯이면 빈 문자열
+        if (item == null) return "";
 
-        // ItemData 안의 displayName 사용
-        return $"{item.displayName} x{qty}" + (eq ? " [E]" : "");
+        if (qty <= 1)
+            return eq ? "[E]" : "";
+
+        return $"x{qty}" + (eq ? " [E]" : "");
     })
     .ToReadOnlyReactiveProperty()
     .AddTo(disposables);
@@ -92,11 +94,11 @@ public class InventoryViewModel : IDisposable
     // 이벤트 선언
     public event Action OnThreeKeysCollected;
 
-    public bool HasItem(string itemName)
+    public bool HasItem(string itemId)
     {
         // Linq의 Any() 메소드를 사용하여 조건에 맞는 아이템이 하나라도 있는지 확인
         return Slots.Any(slotViewModel =>
             slotViewModel.Slot.Item.Value != null &&
-            slotViewModel.Slot.Item.Value.displayName == itemName);
+            slotViewModel.Slot.Item.Value.displayName == itemId);
     }
 }

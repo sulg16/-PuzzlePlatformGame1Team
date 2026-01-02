@@ -21,6 +21,13 @@ public partial class GameManager : MonoBehaviour
     private GameState _currentState;
     bool IsPause = false;
 
+    private bool _timeEventBound = false;
+
+    [SerializeField] private GameObject failPanel;
+    [SerializeField] private GameObject persistentUiPrefab;
+    private PersistentUIController ui;
+
+
     // 현재 씬을 저장 할 변수 세팅
     private Scene currentScene;
 
@@ -71,6 +78,8 @@ public partial class GameManager : MonoBehaviour
             _instance = this;
             DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded; // 씬매니저 씬로드 이벤트에 게임매니저의 OnSceneLoaded 함수를 구독
+
+            EnsurePersistentUI();
         }
         else
         {
@@ -138,6 +147,9 @@ public partial class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        BindTimeEvents();
+        EnsurePersistentUI();
+
         bool isPlayScene = (scene.name == "MainScene_Floor1" || scene.name == "MainScene_Floor2");
 
         // 플레이 씬 진입: 시간 '유지' → 이미 돌고 있으면 그대로, 아니면 시작
@@ -191,7 +203,64 @@ public partial class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        // 오브젝트가 파괴될 때 이벤트 등록 해제
         SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        if (WorldTimeManager.Instance != null)
+            WorldTimeManager.Instance.OnTimeExpired -= HandleTimeExpired;
+
+        _timeEventBound = false;
+    }
+
+
+    private void BindTimeEvents()
+    {
+        if (_timeEventBound) return;
+        if (WorldTimeManager.Instance == null) return;
+
+        WorldTimeManager.Instance.OnTimeExpired += HandleTimeExpired;
+        _timeEventBound = true;
+    }
+
+    private void HandleTimeExpired()
+    {
+        Debug.Log($"[GameManager] HandleTimeExpired called. state={CurrentGameState}");
+
+        if (CurrentGameState == GameState.GameOver) return;
+
+        GameOver();
+        Time.timeScale = 0f;
+        IsPause = true;
+
+        // 게임오버 패널 표시(기존 UI 재사용)
+        if (UI_Manager.Instance != null && UI_Manager.Instance._gameOver != null)
+            UI_Manager.Instance._gameOver.SetActive(true);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        var pc = FindObjectOfType<PlayerController>(true);
+        if (pc != null) pc.LockOnInput(1);
+    }
+
+    private void EnsurePersistentUI()
+    {
+        if (ui != null) return;
+
+        // 이미 존재하면 재사용
+        ui = FindFirstObjectByType<PersistentUIController>();
+        if (ui != null) return;
+
+        if (persistentUiPrefab == null)
+        {
+            Debug.LogError("GameManager에 persistentUiPrefab이 연결되지 않았습니다.");
+            return;
+        }
+
+        var go = Instantiate(persistentUiPrefab);
+        DontDestroyOnLoad(go);
+
+        ui = go.GetComponent<PersistentUIController>();
+        if (ui == null)
+            Debug.LogError("Persistent UI 프리팹 루트에 PersistentUIController가 없습니다.");
     }
 }

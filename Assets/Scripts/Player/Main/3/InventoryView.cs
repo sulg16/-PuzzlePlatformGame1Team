@@ -18,6 +18,10 @@ public class InventoryView : MonoBehaviour
     private ReactiveProperty<int?> selectedIndex = new ReactiveProperty<int?>(null);
     private CompositeDisposable disposables = new CompositeDisposable();
 
+    [Header("Phone Time UI")]
+    public TextMeshProUGUI timeText;   // 남은 시간 mm:ss
+    public TextMeshProUGUI phaseText;
+
     public void Init(InventoryViewModel vm)
     {
         viewModel = vm;
@@ -127,6 +131,7 @@ public class InventoryView : MonoBehaviour
     private void OnEnable()
     {
         Localization.OnLanguageChanged += HandleLanguageChanged;
+        RefreshPhoneTime();
     }
 
     private void OnDisable()
@@ -144,4 +149,29 @@ public class InventoryView : MonoBehaviour
         }
 
     }
+
+    public void RefreshPhoneTime()
+    {
+        var wt = WorldTimeManager.Instance;
+        if (wt == null) return;
+
+        if (phaseText != null)
+        {
+            phaseText.text = wt.CurrentPhase switch
+            {
+                DayPhase.Evening => "저녁",
+                DayPhase.Night => "새벽",
+                DayPhase.Morning => "아침",
+                _ => ""
+            };
+        }
+
+        if (timeText != null)
+        {
+            wt.GetCurrentClock(out int h, out int m);
+            timeText.text = $"{h:00}:{m:00}";
+        }
+    }
+
+
 }

@@ -69,15 +69,29 @@ public class UI_SettingPanel : MonoBehaviour
     {
         if (!_inventory.gameObject.activeSelf)
         {
-            OpenUI();
+            // ===== 열기 =====
+            GameManager.Instance.PauseGame();
             _inventory.gameObject.SetActive(true);
+
+            // 휴대폰 열릴 때 시간 표시 갱신
+            _inventory.RefreshPhoneTime();
+
+            DirectionManager.Instance.LockOnCam(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
         else
         {
-            CloseUI();
+            // ===== 닫기 =====
             _inventory.gameObject.SetActive(false);
+            GameManager.Instance.ReturnGame(); 
+
+            DirectionManager.Instance.LockOnCam(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
+
 
 
 

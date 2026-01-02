@@ -136,56 +136,55 @@ public partial class GameManager : MonoBehaviour
         ChangeGameState(GameState.GameOver);
     }
 
-    // SceneManager.sceneLoaded 라는 이벤트에 구독 할 함수
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // 로드된 씬의 buildIndex에 따라 UI 상태를 다르게 설정
-        //switch (scene.buildIndex)
-        //{
-        //    case 0:
-        //        ChangeGameState(GameState.Intro);
-        //        break;
-        //    case 1:
-        //        ChangeGameState(GameState.Playing);
-        //        break;
-        //}
+        bool isPlayScene = (scene.name == "MainScene_Floor1" || scene.name == "MainScene_Floor2");
 
-        // 새 씬의 이름이 "00"일 경우
+        // 플레이 씬 진입: 시간 '유지' → 이미 돌고 있으면 그대로, 아니면 시작
+        if (isPlayScene)
+        {
+            // 이전 씬에서 Pause였을 수 있으니 정상화
+            Time.timeScale = 1f;
+            IsPause = false;
+
+            ChangeGameState(GameState.Playing);
+
+            WorldTimeManager.Instance.StartIfNotRunning();
+        }
+
+        // 엔딩 씬: 시간 정지
+        if (scene.name == "EndingScene")
+        {
+            WorldTimeManager.Instance.StopTime();
+        }
+
+        // 이하 기존 씬별 로직 --------------------------------
+
         if (scene.name == "IntroScene")
         {
             DirectionManager.Instance.Direction_Intro();
-            
         }
 
-        // 새 씬의 이름이 "00"일 경우
         if (scene.name == "MainScene_Floor2")
         {
             DirectionManager.Instance._mainCam.gameObject.SetActive(true);
             Player.Instance._controller.LockOnInput(0);
             Cursor.lockState = CursorLockMode.Locked;
 
-            // AudioManager의 bgmGame2 변수에 할당된 오디오 클립을 가져와 재생
             AudioManager.Instance.bgmSource.clip = AudioManager.Instance.bgmGame;
-            // 소리 재생
             AudioManager.Instance.bgmSource.Play();
         }
-        // 새 씬의 이름이 "00"일 경우
         else if (scene.name == "MainScene_Floor1")
         {
-            // AudioManager의 bgmGame2 변수에 할당된 오디오 클립을 가져와 재생
             AudioManager.Instance.bgmSource.clip = AudioManager.Instance.bgmGame;
-            // 소리 재생
             AudioManager.Instance.bgmSource.Play();
 
             Debug.Log("좌표변경");
-            // 플레이어의 위치를 특정 좌표로 변경
             Player.Instance.transform.position = new Vector3(7, -6, -18);
         }
         else if (scene.name == "EndingScene")
         {
-            // AudioManager의 bgmGame2 변수에 할당된 오디오 클립을 가져와 재생
             AudioManager.Instance.bgmSource.clip = AudioManager.Instance.bgmGame2;
-            // 소리 재생
             AudioManager.Instance.bgmSource.Play();
         }
     }
